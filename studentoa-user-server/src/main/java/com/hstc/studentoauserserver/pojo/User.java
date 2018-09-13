@@ -1,5 +1,6 @@
 package com.hstc.studentoauserserver.pojo;
 
+import com.hstc.studentoauserserver.enums.UserEnum;
 import lombok.Data;
 
 import java.util.Date;
@@ -19,6 +20,8 @@ public class User {
     private String telephone;
 
     private String email;
+
+    private Integer status= UserEnum.INACTIVATED.getCode();
 
     private Date createTime;
 

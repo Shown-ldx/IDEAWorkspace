@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/user")
 public class UserController {
     @PostMapping("/register")
-    public void RegisterUser(){
-
+    public String RegisterUser(){
+        return null;
     }
 
 }

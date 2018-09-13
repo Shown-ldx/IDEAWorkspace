@@ -23,6 +23,7 @@ public class UserMapperTest {
         String email = "Ldixing@163.com";
         User user = userMapper.selectUserByEmail(email);
         log.error(user.getUsername());
+        log.error(user.getUpdateTime().toString());
         Assert.assertNotEquals(1, user.getId());
     }
 }

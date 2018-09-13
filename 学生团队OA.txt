@@ -1,0 +1,89 @@
+学生团队OA系统的设计与实现：
+
+
+个人：  //日记功能模块（创建日记，记录事件或者知识）                                        --日记表
+	时间管理模块（我的日程安排）                                                      --日程表
+	个人中心（个人信息，所在团队和认识好友，我的任务）                                --User表
+	交友功能模块（发现好友，添加好友）                                                --好友表
+
+团队（创建团队）：                                                                        --团队组员表
+	任务管理模块                                                                      --团队任务表
+		（创建任务，分解子任务，分配任务，任务反馈）                              --子任务表
+	资源共享模块
+		（上传文件共享）                                                          --文件系统
+	//流程管理模块
+		//（流程创建，流程提交，流程进度，流程完成归档，流程查询）
+	//学生画像模块
+		//（任务完成度，任务负荷，活跃度）
+	聊天留言模块                                                                      --留言表
+	//客户管理模块                                                                      --客户信息表、客户要求表
+		（建立客户信息，添加客户要求，客户信息查询，客户要求进度状态）
+		（注意：客户可以为指导老师，其他合作团队等与自己团队有关的外界社体）
+
+
+
+
+
+http://www.jeesite.com/                          //借鉴模板
+https://www.cnblogs.com/wmyskxz/p/8872329.html   //阿里巴巴参考手册
+https://blog.csdn.net/ityouknow/article/details/73836159	//springboot 整合 shiro 不错的文章
+
+
+
+
+
+
+数据库表：
+用户表：
+tb_user(id, username,sex,age, password, telephone, email, status//激活状态, create_time, update_time)
+
+日记表
+tb_diary(id, title, content, user_id create_time, update_time)
+
+日程表：
+tb_schedule(id, title, worktime//, address//日程地点, detail//日程详情描述, level//公开或者不公开, user_id)
+
+好友表：
+tb_freind(id, user_id, freind_id, remarks//备注名, create_time, update_time)
+
+团队表：
+tb_team(id, teamname//团队名, taskname//主任务名, start_time//任务启动时间, end_time//任务到期时间, progress//进展,
+	 substack_number//子任务数量, user_id//组长id, description//任务描述, status//任务状态，完成，进行，超期，死亡)
+团队组员表：
+tb_member(id, team_id, user_id, level//角色等级, create_time, update_time)
+
+子任务表：
+tb_subtask(id, title, team_id, member_id//子任务负责人, start_time, end_time, progress, description, status//完成，进行，超期，死亡)
+
+任务反馈表：
+tb_feedback(id, subtask_id, content, status//处理中，未处理, create_time, update_time)
+
+//留言表：给子任务留言
+tb_message(id, content, user_id, subtask_id, create_time, update_time)
+
+//客户信息表
+
+
+
+//注册邮箱验证，邮箱找回密码：https://blog.csdn.net/zhaihuilin0986/article/details/78530657
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+实现技术：
+后台springboot+eureka+feign+mysql+redis
+前端：freemark+ajax
