@@ -8,5 +8,5 @@ import org.apache.ibatis.annotations.SelectProvider;
 public interface UserMapper {
     @SelectProvider(type=SqlBuilder.class, method="findByEmail")
     public User selectUserByEmail(@Param("email") String email);
-
+    
 }
