@@ -33,4 +33,23 @@ public class UserServiceImpl implements UserService{
         if(result < 0) log.error("数据库插入又出问题！");
         return user;
     }
+
+    @Override
+    public User selectUserByEmail(String email) {
+        return userMapper.selectUserByEmail(email);
+    }
+
+    @Override
+    public User updateUser(User user) {
+        User user1 = userMapper.selectUserByEmail(user.getEmail());
+        if(user1 == null){
+            log.error("邮箱未注册");
+            throw new UserException(UserEnum.INVALID_EMAIL);
+        }
+        if(user1.getId().equals(user.getId())){
+            userMapper.updateUser(user);
+            return user;
+        }
+        return null;
+    }
 }

@@ -25,6 +25,7 @@ import javax.mail.internet.MimeMessage;
 import javax.validation.Valid;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Random;
 
 @Slf4j
 @RestController
@@ -46,8 +47,16 @@ public class UserController {
     public static Map<String, User> map = new HashMap<String, User>();
 
     @PostMapping("/login")
-    public String Login(){
-        return "hello world";
+    public String Login(@RequestParam("email") String email, @RequestParam("password") String password){
+        User user = userService.selectUserByEmail(email);
+        if(user == null) return new Gson().toJson(ResultVOUtil.error(9999, "邮箱未被注册"));
+        if(user.getStatus() == UserEnum.INACTIVATED.getCode())
+            return new Gson().toJson(ResultVOUtil.error(9999, "邮箱未被激活"));
+        if(user.getPassword().equals(password)){
+            log.error("登陆成功");
+            return new Gson().toJson(ResultVOUtil.success());
+        }
+        else return new Gson().toJson(ResultVOUtil.error(9999, "密码不正确"));
     }
 
     //注册功能
@@ -83,6 +92,20 @@ public class UserController {
             //TODO 将激活的用户存入redis，时间自定义
             map.remove(user.getId());
         }
+        return new Gson().toJson(ResultVOUtil.success());
+    }
+
+    @PostMapping("/forget")
+    public String forget(@RequestParam("email") String email){
+        User user = userService.selectUserByEmail(email);
+        if (user == null) return new Gson().toJson(ResultVOUtil.error(9999, "邮箱未被注册"));
+        Random random = new Random();
+        Integer number = random.nextInt(900000) + 100000;
+        String repassword = String.valueOf(number);
+        user.setPassword(repassword);
+        User result = userService.updateUser(user);
+        if(result == null) return new Gson().toJson(ResultVOUtil.error(9999, "重置不成功"));
+        sendSimpleEmail(user.getEmail(), "您好，您的密码已经重置，初始密码为：" + repassword);
         return new Gson().toJson(ResultVOUtil.success());
     }
 

@@ -23,4 +23,6 @@ background-attachment:fixed;
 #registerform{
 	display: none;
 }
-
+#forgetform{
+	display: none;
+}
