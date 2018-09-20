@@ -1,7 +1,7 @@
 package com.hstc.studentoauserserver.service;
 
-import org.springframework.stereotype.Service;
+import com.hstc.studentoauserserver.pojo.User;
 
 public interface UserService {
-
+    public User saveUser(User user);
 }

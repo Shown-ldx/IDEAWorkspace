@@ -23,7 +23,7 @@ public class User {
 
     private Integer status= UserEnum.INACTIVATED.getCode();
 
-    private Date createTime;
+    private Date createTime = new Date();
 
     private Date updateTime;
 
