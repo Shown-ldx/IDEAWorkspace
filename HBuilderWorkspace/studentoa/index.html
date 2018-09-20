@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>学生团队OA</title>
+		
+		<link href="https://cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+		<script src="https://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
+		<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+		<script src="js/login.js"></script>
+		<link href="css/style.css" rel="stylesheet"/>
+	</head>
+	<body >
+		
+	<div class="container">
+	<div class="row clearfix">
+		<div class="col-md-12 column">
+			<ul class="nav nav-tabs">
+				<li class="active">
+					 <a href="#">StudentOA</a>
+				</li>
+				<li>
+					 <a href="#">简介</a>
+				</li>
+				
+				<li class="dropdown pull-right">
+					 <a href="#" data-toggle="dropdown" class="dropdown-toggle">开始<strong class="caret"></strong></a>
+					<ul class="dropdown-menu">
+						<li>
+							 <a id="login" href="#">登陆</a>
+						</li>
+						<li>
+							 <a id="register" href="#">注册</a>
+						</li>
+						<li>
+							 <a href="#">忘记密码</a>
+						</li>
+					</ul>
+				</li>
+			</ul>
+		</div>
+	</div>
+	<div class="row clearfix">
+		<div class="col-md-12 column">
+			<div class="text1 jumbotron">
+				<h1 align="center"">
+					学生团队OA!
+				</h1>
+				<p align="center">
+					This is a template for a simple marketing or informational website. It includes a large callout called the hero unit and three supporting pieces of content. Use it as a starting point to create something more unique.
+				</p>
+				<form role="form" id="loginform">
+					<div class="form-group">
+					 	<label for="Lemail">邮箱</label><input type="email" placeholder="Enter Email" class="form-control" id="Lemail" />
+					</div>
+					<div class="form-group">
+					 	<label for="Lpassword">密码</label><input type="password" placeholder="Enter Password" class="form-control" id="Lpassword" />
+					</div>
+				
+					<button type="submit" id="signin" class="btn btn-default">登陆</button>
+				</form>
+				
+				
+				<form  role="form" id="registerform">
+					<div class="form-group">
+					 	<label for="Rusername">用户名</label><input type="text" placeholder="Enter UserName" class="form-control" id="Rusername" />
+					</div>
+					<div class="form-group">
+					 	<label for="Rage">年龄</label><input type="number" max="120" min="1" placeholder="Enter Age" class="form-control" id="Rage" />
+					</div>
+					<div class="form-group">
+					 	<label for="Rsex">性别</label><input type="text" list="SexList" placeholder="Enter Sex" class="form-control" id="Rsex" />
+					 	<datalist id="SexList">
+					 		<option label="男" value="男"/>
+					 		<option label="女" value="女"/>
+					 	</datalist>
+					</div>
+					<div class="form-group">
+					 	<label for="Rtelephone">电话</label><input type="text" placeholder="Enter Telephone" class="form-control" id="Rtelephone" />
+					</div>
+					<div class="form-group">
+					 	<label for="Remail">邮箱</label><input type="email" placeholder="Enter Email" class="form-control" id="Remail" />
+					</div>
+					<div class="form-group">
+					 	<label for="Rpassword">密码</label><input type="password" placeholder="Enter Password" class="form-control" id="Rpassword" />
+					</div>
+				
+					<button type="submit" id="signup" class="btn btn-default">注册</button>
+				</form>
+				
+			</div>
+		</div>
+	</div>
+</div>
+</body>
+</html>

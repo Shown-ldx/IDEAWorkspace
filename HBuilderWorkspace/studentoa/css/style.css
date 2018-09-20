@@ -1,0 +1,26 @@
+/*.container1{
+	
+	filter:alpha(opacity=50);  
+-moz-opacity:0.5;  
+-khtml-opacity: 0.5;  
+opacity: 0.5;
+width:100%;
+position:absolute;
+background:url(../img/back.jpg); 
+background-attachment:fixed;
+
+}*/
+.text1{
+	padding-left: 220px;
+	padding-right: 220px;
+	margin-top: 220px;
+	
+}
+
+#loginform{
+	
+}
+#registerform{
+	display: none;
+}
+
