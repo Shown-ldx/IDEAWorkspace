@@ -25,6 +25,7 @@ public class UserServiceImplTest {
         user.setUsername("ldx");
         user.setAge(14);
         user.setSex("男");
+        user.setTelephone("10086");
         user.setEmail("luodixing@163.com");
         user.setPassword("110");
         User result = userService.saveUser(user);

@@ -16,8 +16,8 @@ public class SqlBuilder {//与provider（type=SqlBuilder.class, method=""）type
 
     public String saveUser(@Param("user") User user){
 
-        String sql = "insert into user(id, username, sex, age, password, email, status, create_time)"
-                + "values(#{user.id}, #{user.username}, #{user.sex}, #{user.age}, #{user.password}, #{user.email}, #{user.status}, #{user.createTime})";
+        String sql = "insert into user(id, username, sex, age, password, telephone, email, status, create_time)"
+                + "values(#{user.id}, #{user.username}, #{user.sex}, #{user.age}, #{user.password}, #{user.telephone}, #{user.email}, #{user.status}, #{user.createTime})";
         return sql;
     }
 

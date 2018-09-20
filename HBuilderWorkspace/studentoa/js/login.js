@@ -48,7 +48,8 @@ if(!Remail.match(/^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+((\.[a-zA-Z0-9_-]{2,3}){1,2}
 	url = "http://localhost:8080/user/register";
 	data.username = $("#Rusername").val();
 	data.sex = $("#Rsex").val();
-	data.age = $("#Rage").val();
+	data.age = parseInt($("#Rage").val());
+	alert(typeof data.age);
 	data.password = $("#Rpassword").val();
 	data.telephone = $("#Rtelephone").val();
 	data.email = $("#Remail").val();
@@ -61,6 +62,7 @@ function submit(data,url) {
         cache: !1,
         type: "POST",
         url: url,
+        dataType: "json",
         data: data,
         async: !0,
         beforeSend: function () {

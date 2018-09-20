@@ -9,6 +9,7 @@ public class UserForm2UserConverter {
     public static User convert(UserForm userForm){
         User user = new User();
         BeanUtils.copyProperties(userForm, user);
+//        user.setAge(Integer.parseInt(userForm.getAge()));
         user.setId(KeyUtil.genUniqueKey());
         return user;
     }

@@ -10,8 +10,8 @@ public class UserForm {
     private String username;
     @NotEmpty(message = "性别必填")
     private String sex;
-    @NotEmpty(message = "年龄必填")
-    private String age;
+   //不能注解非空，不然它会转换为String类型
+    private Integer age;
     @NotEmpty(message = "密码必填")
     private String password;
     @NotEmpty(message = "电话必填")
