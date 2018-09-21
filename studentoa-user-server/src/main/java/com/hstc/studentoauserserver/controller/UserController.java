@@ -9,6 +9,7 @@ import com.hstc.studentoauserserver.pojo.User;
 import com.hstc.studentoauserserver.service.UserService;
 import com.hstc.studentoauserserver.util.ResultVOUtil;
 
+import com.hstc.studentoauserserver.vo.TestVO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -22,6 +23,7 @@ import org.thymeleaf.context.Context;
 
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 import java.util.HashMap;
 import java.util.Map;
@@ -47,25 +49,30 @@ public class UserController {
     public static Map<String, User> map = new HashMap<String, User>();
 
     @PostMapping("/login")
-    public String Login(@RequestParam("email") String email, @RequestParam("password") String password){
+    public String Login(@RequestParam("email") String email, @RequestParam("password") String password, HttpServletResponse response){
+
+        response.setHeader("Access-Control-Allow-Origin", "*");             //设置请求头，使浏览器能跨域得到数据
         User user = userService.selectUserByEmail(email);
         if(user == null) return new Gson().toJson(ResultVOUtil.error(9999, "邮箱未被注册"));
         if(user.getStatus() == UserEnum.INACTIVATED.getCode())
             return new Gson().toJson(ResultVOUtil.error(9999, "邮箱未被激活"));
         if(user.getPassword().equals(password)){
-            log.error("登陆成功");
             return new Gson().toJson(ResultVOUtil.success());
         }
-        else return new Gson().toJson(ResultVOUtil.error(9999, "密码不正确"));
+        else {
+            log.error("密码不正确");
+            return new Gson().toJson(ResultVOUtil.error(9999, "密码不正确"));
+        }
     }
 
     //注册功能
     @PostMapping("/register")
-    public String registerUser(@Valid UserForm userForm, BindingResult bindingResult){
+    public String registerUser(@Valid UserForm userForm, BindingResult bindingResult, HttpServletResponse response){
         if (bindingResult.hasErrors()){
             log.error("用户注册信息不正确");
             throw new UserException(UserEnum.PARAM_ERRER.getCode(), bindingResult.getFieldError().getDefaultMessage());
         }
+        response.setHeader("Access-Control-Allow-Origin", "*");
 
         User user = UserForm2UserConverter.convert(userForm);
 
@@ -96,7 +103,8 @@ public class UserController {
     }
 
     @PostMapping("/forget")
-    public String forget(@RequestParam("email") String email){
+    public String forget(@RequestParam("email") String email, HttpServletResponse response){
+        response.setHeader("Access-Control-Allow-Origin", "*");
         User user = userService.selectUserByEmail(email);
         if (user == null) return new Gson().toJson(ResultVOUtil.error(9999, "邮箱未被注册"));
         Random random = new Random();

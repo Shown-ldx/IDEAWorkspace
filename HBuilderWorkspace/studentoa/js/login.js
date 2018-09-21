@@ -15,26 +15,7 @@ $(document).ready(function(){
 		$("#forgetform").show();
 	});
 	
-//	登陆 注册 忘记密码的ajax
-	$("#js-btn").click(function() {
-    var data = {} ;
-    var name = $("#js-btn").attr('class') ;
-    var url = "" ;
-    if(name.indexOf("rtn")>0) {
-        data.userEmail = $("#js-field__email").val() ;
-        data.userPass = $("#js-field__pass").val() ;
-        url = "http://localhost:8080/user/login" ;
-    } else if(name.indexOf("new")>0) {
-        data.userEmail = $("#js-field__email").val() ;
-        data.userPass = $("#js-field__pass").val() ;
-        data.userRepass = $("#js-field__r-pass").val() ;
-        url = "http://localhost:8080/user/register" ;
-    } else if(name.indexOf("rst")>0) {
-        data.userEmail = $("#js-field__email").val() ;
-        url = "http://localhost:8080/user/forget" ;
-    }
-    submit(data, url) ;
-});
+
 
 $("#signup").click(function(){
 	
@@ -105,6 +86,7 @@ if(!Remail.match(/^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+((\.[a-zA-Z0-9_-]{2,3}){1,2}
 	url = "http://localhost:8080/user/login";
 	data.email = $("#Lemail").val();
 	data.password = $("#Lpassword").val();
+	console.log(data)
 	submit(data, url, "#signin");
 	
 });
@@ -113,26 +95,33 @@ function submit(data,url,name) {
     $.ajax({
         cache: !1,
         type: "POST",
+//		headers: {
+//			"Access-Control-Allow-Origin": "*",
+//      	"Accept": "application/json; charset=utf-8",
+//      	"Access-Control-Allow-Methods": "POST, GET, OPTIONS, PUT, DELETE"
+//  	},
         url: url,
         dataType: "json",
         data: data,
         async: !0,
         beforeSend: function () {
-            $(name).html("提交中..."), $("#signup").attr("disabled", "disabled")
+        	
+            $(name).html("提交中..."), $(name).attr("disabled", "disabled")
         },
         success: function (data) {
         	
-            var result  = jQuery.parseJSON(data);
-            alert(result.message);
-            layer.alert(result.message);
+            alert(data.message);
+            if(data.code==0 && data.data != null){
+            	window.location.href = 'pages/index.html';
+            }
         },
-        error: function(e){
-        	alert(e.status+"错误！");
+        error: function(){
+        	alert("错误！！");
         },
         complete: function () {
             $(name).html("success"), $(name).removeAttr("disabled")
         }
-    })
+    });
 }
 });
 

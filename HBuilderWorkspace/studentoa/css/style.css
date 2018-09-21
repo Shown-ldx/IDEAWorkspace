@@ -10,6 +10,10 @@ background:url(../img/back.jpg);
 background-attachment:fixed;
 
 }*/
+
+/*
+ * 登陆注册
+ */
 .text1{
 	padding-left: 220px;
 	padding-right: 220px;
@@ -25,4 +29,16 @@ background-attachment:fixed;
 }
 #forgetform{
 	display: none;
+}
+
+/*
+ * 主页面样式
+ */
+.navBar{
+	background-color: lightskyblue;
+}
+
+.fullCon{
+	width: 100%;
+	height: 100%;
 }
