@@ -108,7 +108,11 @@ function submit(data,url,name) {
             
             if(data.code==0 && data.data != null){
             	alert(data.message);
-            	window.location.href = "pages/index.html?id="+data.data.id;
+            	var storage = window.localStorage;
+            	storage.setItem("email", $("#Lemail").val());
+            	storage.setItem("token", data.token);
+            	window.location.href = "pages/index.html";
+            	
             }
         },
         error: function(){

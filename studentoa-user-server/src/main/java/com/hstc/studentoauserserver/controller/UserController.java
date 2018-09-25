@@ -9,9 +9,11 @@ import com.hstc.studentoauserserver.pojo.User;
 import com.hstc.studentoauserserver.service.UserService;
 import com.hstc.studentoauserserver.util.ResultVOUtil;
 
+import com.hstc.studentoauserserver.util.TokenUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
@@ -27,6 +29,7 @@ import javax.validation.Valid;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
+import java.util.concurrent.TimeUnit;
 
 @Slf4j
 @RestController
@@ -42,6 +45,9 @@ public class UserController {
     @Autowired
     private TemplateEngine templateEngine;
 
+    @Autowired
+    private StringRedisTemplate stringRedisTemplate;
+
     @Value("${spring.mail.username}")
     private String sender;
 
@@ -56,7 +62,9 @@ public class UserController {
         if(user.getStatus() == UserEnum.INACTIVATED.getCode())
             return new Gson().toJson(ResultVOUtil.error(9999, "邮箱未被激活"));
         if(user.getPassword().equals(password)){
-            return new Gson().toJson(ResultVOUtil.success(user));
+            String token = TokenUtil.genetateToken();
+            stringRedisTemplate.opsForValue().set(user.getId(), token);
+            return new Gson().toJson(ResultVOUtil.success(token));
         }
         else {
             log.error("密码不正确");
