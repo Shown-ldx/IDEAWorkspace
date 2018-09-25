@@ -9,7 +9,6 @@ import com.hstc.studentoauserserver.pojo.User;
 import com.hstc.studentoauserserver.service.UserService;
 import com.hstc.studentoauserserver.util.ResultVOUtil;
 
-import com.hstc.studentoauserserver.vo.TestVO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -57,7 +56,7 @@ public class UserController {
         if(user.getStatus() == UserEnum.INACTIVATED.getCode())
             return new Gson().toJson(ResultVOUtil.error(9999, "邮箱未被激活"));
         if(user.getPassword().equals(password)){
-            return new Gson().toJson(ResultVOUtil.success());
+            return new Gson().toJson(ResultVOUtil.success(user));
         }
         else {
             log.error("密码不正确");

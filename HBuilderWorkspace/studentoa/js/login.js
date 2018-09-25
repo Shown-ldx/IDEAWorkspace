@@ -86,7 +86,6 @@ if(!Remail.match(/^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+((\.[a-zA-Z0-9_-]{2,3}){1,2}
 	url = "http://localhost:8080/user/login";
 	data.email = $("#Lemail").val();
 	data.password = $("#Lpassword").val();
-	console.log(data)
 	submit(data, url, "#signin");
 	
 });
@@ -95,31 +94,28 @@ function submit(data,url,name) {
     $.ajax({
         cache: !1,
         type: "POST",
-//		headers: {
-//			"Access-Control-Allow-Origin": "*",
-//      	"Accept": "application/json; charset=utf-8",
-//      	"Access-Control-Allow-Methods": "POST, GET, OPTIONS, PUT, DELETE"
-//  	},
+
         url: url,
         dataType: "json",
         data: data,
         async: !0,
         beforeSend: function () {
         	
-            $(name).html("提交中..."), $(name).attr("disabled", "disabled")
+            $(name).html("提交中..."), $(name).attr("disabled", "disabled");
         },
         success: function (data) {
         	
-            alert(data.message);
+            
             if(data.code==0 && data.data != null){
-            	window.location.href = 'pages/index.html';
+            	alert(data.message);
+            	window.location.href = "pages/index.html?id="+data.data.id;
             }
         },
         error: function(){
         	alert("错误！！");
         },
         complete: function () {
-            $(name).html("success"), $(name).removeAttr("disabled")
+            $(name).html("success"), $(name).removeAttr("disabled");
         }
     });
 }
