@@ -24,7 +24,9 @@ import org.thymeleaf.context.Context;
 
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.util.HashMap;
 import java.util.Map;
@@ -54,7 +56,8 @@ public class UserController {
     public static Map<String, User> map = new HashMap<String, User>();
 
     @PostMapping("/login")
-    public String Login(@RequestParam("email") String email, @RequestParam("password") String password, HttpServletResponse response){
+    public String Login(@RequestParam("email") String email, @RequestParam("password") String password,
+                        HttpServletRequest request, HttpServletResponse response){
 
         response.setHeader("Access-Control-Allow-Origin", "*");             //设置请求头，使浏览器能跨域得到数据
         User user = userService.selectUserByEmail(email);
@@ -63,7 +66,8 @@ public class UserController {
             return new Gson().toJson(ResultVOUtil.error(9999, "邮箱未被激活"));
         if(user.getPassword().equals(password)){
             String token = TokenUtil.genetateToken();
-            stringRedisTemplate.opsForValue().set(user.getId(), token);
+            HttpSession session = request.getSession();
+            session.setAttribute(user.getEmail(), token);
             return new Gson().toJson(ResultVOUtil.success(token));
         }
         else {
@@ -156,6 +160,8 @@ public class UserController {
         }
         javaMailSender.send(message);
     }
+
+
 
 
 }

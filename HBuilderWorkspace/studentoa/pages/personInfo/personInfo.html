@@ -3,11 +3,16 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>StudentOA</title>
+		<script src="../js/index.js"></script>
 	</head>
 	<body>
 		<div class="jumbotron">
 
 <form  role="form">
+	
+			<div class="form-group">
+				<input type="hidden" class="form-control" id="Pid"/>
+			</div>
 			<div class="form-group">
 				<label for="Pusername">用户名</label><input type="text" placeholder="Enter UserName" class="form-control" id="Pusername" />
 			</div>
@@ -25,13 +30,13 @@
 				<label for="Ptelephone">电话</label><input type="text" placeholder="Enter Telephone" class="form-control" id="Ptelephone" />
 			</div>
 			<div class="form-group">
-				<label for="Pemail">邮箱</label><input type="email" placeholder="Enter Email" class="form-control" id="Pemail" />
+				<label for="Pemail">邮箱</label><input type="email" placeholder="Enter Email" class="form-control" id="Pemail" readonly="readonly"/>
 			</div>
-			<div class="form-group">
+			<!--<div class="form-group">
 				<label for="Ppassword">密码</label><input type="password" placeholder="Enter Password" class="form-control" id="Ppassword" />
-			</div>
+			</div>-->
 				
-			<!--<button type="submit" id="signup" class="btn btn-default">注册</button>-->
+			<button type="submit" id="updateUserInfo" class="btn btn-default">修改</button>
 </form>
 
 </div>
