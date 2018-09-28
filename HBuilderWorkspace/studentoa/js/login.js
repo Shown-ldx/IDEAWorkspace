@@ -105,7 +105,6 @@ function submit(data,url,name) {
         },
         success: function (data) {
         	
-            
             if(data.code==0 && data.data != null){
             	alert(data.message);
             	var storage = window.localStorage;
@@ -113,6 +112,8 @@ function submit(data,url,name) {
             	storage.setItem("token", data.token);
             	window.location.href = "pages/index.html";
             	
+            }else{
+            	alert(data.message);
             }
         },
         error: function(){

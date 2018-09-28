@@ -7,11 +7,8 @@ $(document).ready(function(){
 	$.getJSON(
 		"http://localhost:8080/userAction/findUser?email="+storage["email"],
 		
-		
 		function(data){
-
-				updateFresh(data.data);
-				
+			updateUserFresh(data.data);
 		}
 	);
     
@@ -19,8 +16,8 @@ $(document).ready(function(){
   
     //修改个人信息
   $("#updateUserInfo").click(function(){
-	console.log("进来了");
-	var url = "http://localhost:8080/userAction/updateUser";
+
+  	var url = "http://localhost:8080/userAction/updateUser";
 	var data = {};
 	data.id = $("#Pid").val();
 	data.username = $("#Pusername").val();
@@ -28,11 +25,21 @@ $(document).ready(function(){
 	data.age = $("#Page").val();
 	data.telephone = $("#Ptelephone").val();
 	data.email = $("#Pemail").val();
-	submit(data, url, "#updateUserInfo");
+	if(confirm("确定修改个人信息为表单中的信息吗？")){
+		submit(data, url, "#updateUserInfo");
+   }
+	
+	
+});
+
+//分页显示我的好友列表
+$("#myFriendList").click(function(){
+	$("#motherBoard").load("friend/friendList.html");
 });
 
 });
 
+//ajax提交
 function submit(data,url,name) {
     $.ajax({
         cache: !1,
@@ -49,9 +56,9 @@ function submit(data,url,name) {
         success: function (data) {
         	
             
-            if(data.code==0 && data.data != null){
+            if(data.code==0 &&name.equals("#updateUserInfo") && data.data != null){
             	alert(data.message);
-            	updateFresh(data.data);
+            	updateUserFresh(data.data);
             }
         },
         error: function(){
@@ -63,7 +70,7 @@ function submit(data,url,name) {
     });
 }
 //刷新更新后的用户信息
-function updateFresh(data){
+function updateUserFresh(data){
 	$("#Pid").val(data.id);
 	$("#Pusername").val(data.username);
 	$("#Page").val(data.age);

@@ -65,9 +65,12 @@ public class UserController {
         if(user.getStatus() == UserEnum.INACTIVATED.getCode())
             return new Gson().toJson(ResultVOUtil.error(9999, "邮箱未被激活"));
         if(user.getPassword().equals(password)){
+            stringRedisTemplate.opsForValue().set(user.getEmail(), user.getId());
+            //TODO 使用quart定时检查用户token是否过时，过时则remove掉redis里面的用户对应
             String token = TokenUtil.genetateToken();
             HttpSession session = request.getSession();
             session.setAttribute(user.getEmail(), token);
+            log.error("登陆成功");
             return new Gson().toJson(ResultVOUtil.success(token));
         }
         else {
@@ -107,7 +110,6 @@ public class UserController {
             user.setStatus(UserEnum.ACTIVATED.getCode());
             userService.saveUser(user);
             //将激活的用户移出map
-            //TODO 将激活的用户存入redis，时间自定义
             map.remove(user.getId());
         }
         return new Gson().toJson(ResultVOUtil.success());

@@ -7,3 +7,9 @@ spring:
     username: root
     password: 123456
     type: com.alibaba.druid.pool.DruidDataSource
+
+
+#设置mybatis驼峰命名规则
+mybatis:
+  configuration:
+    map-underscore-to-camel-case: true
