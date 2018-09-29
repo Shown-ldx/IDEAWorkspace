@@ -27,6 +27,7 @@
 http://www.jeesite.com/                          //借鉴模板
 https://www.cnblogs.com/wmyskxz/p/8872329.html   //阿里巴巴参考手册
 https://blog.csdn.net/ityouknow/article/details/73836159	//springboot 整合 shiro 不错的文章
+https://blog.csdn.net/zhangxing52077/article/details/73195565    //token的使用
 
 
 
@@ -65,15 +66,20 @@ tb_message(id, content, user_id, subtask_id, create_time, update_time)
 
 
 
-//注册邮箱验证，邮箱找回密码：https://blog.csdn.net/zhaihuilin0986/article/details/78530657
+//注册邮箱验证，邮箱找回密码：https://blog.csdn.net/wenteryan/article/details/78600865?locationNum=5&fps=1
+
+				https://blog.csdn.net/zhaihuilin0986/article/details/78530657
 
 
 
 
+$POST
 
 
-
-
+好友管理模块：  1）根据用户id查询所有好友列表，分页查询，分页显示
+		2）增加好友
+		3）删除好友
+		4）修改备注
 
 
 
