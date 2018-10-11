@@ -2,6 +2,7 @@ package com.hstc.studentoafriendserver.service.impl;
 
 import com.hstc.studentoafriendserver.pojo.Friend;
 import com.hstc.studentoafriendserver.service.FriendService;
+import com.hstc.studentoafriendserver.vo.FriendVO;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -28,11 +29,10 @@ public class FriendServiceImplTest {
         String userId = "02";
         Integer currPage = 1;
         Integer pageSize = 5;
-        List<Friend> friendList;
-        friendList = friendService.selectMyFriendsById(userId, currPage, pageSize);
-        for (Friend friend : friendList){
-            log.error(friend.getId()+"--"+friend.getUserId()+"--"+friend.getFriendId()+"---"
-                    +friend.getRemarks()+"--"+friend.getCreateTime()+"--"+friend.getUpdateTime());
+        List<FriendVO> friendVOList;
+        friendVOList = friendService.selectMyFriendsById(userId, currPage, pageSize);
+        for (FriendVO friend : friendVOList){
+            log.error(friend.getFriendEmail() + "---" +friend.getRemarks() + "--"+friend.getCreateTime());
         }
     }
 
@@ -47,5 +47,11 @@ public class FriendServiceImplTest {
 
     @Test
     public void updateFriendRemarks() {
+    }
+
+    @Test
+    public void selectPages() {
+        Integer result = friendService.selectPages(5);
+        log.error(result.toString());
     }
 }

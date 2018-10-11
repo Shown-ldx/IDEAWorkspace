@@ -37,14 +37,23 @@ $(document).ready(function(){
 //分页显示我的好友列表
 $("#myFriendList").click(function(){
 	$("#motherBoard").load("friend/friendList.html");
-});
-
+	$.getJSON(
+		"http://localhost:8080/friend/list?email="+storage["email"],
+		function(data){
+			
+		}
+	);
 });
 
   //加载我的日程
  $("#schedule").click(function(){
-  	window.open("schedule/index.html");
+// 	$("#motherBoard").load("schedule/index.html");
+	window.open("schedule/index.html");
  });
+
+});
+
+
 
 //ajax提交
 function submit(data,url,name) {
@@ -63,7 +72,7 @@ function submit(data,url,name) {
         success: function (data) {
         	
             
-            if(data.code==0 &&name.equals("#updateUserInfo") && data.data != null){
+            if(data.code==0 && name.equals("#updateUserInfo") && data.data != null){
             	alert(data.message);
             	updateUserFresh(data.data);
             }

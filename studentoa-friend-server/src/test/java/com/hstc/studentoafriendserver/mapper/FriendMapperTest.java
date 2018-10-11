@@ -28,7 +28,7 @@ public class FriendMapperTest {
         List<Friend> friendList;
         friendList = friendMapper.selectMyFriendsById(userId, begin, pageSize);
         for (Friend friend : friendList){
-            log.error(friend.getId()+"--"+friend.getUserId()+"--"+friend.getFriendId()+"---"
+            log.error(friend.getId()+"--"+friend.getUserId()+"--"+friend.getFriendEmail()+"---"
                     +friend.getRemarks()+"--"+friend.getCreateTime()+"--"+friend.getUpdateTime());
         }
 

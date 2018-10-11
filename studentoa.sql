@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 80012
 File Encoding         : 65001
 
-Date: 2018-10-11 14:18:54
+Date: 2018-10-11 16:46:18
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -22,7 +22,7 @@ DROP TABLE IF EXISTS `friend`;
 CREATE TABLE `friend` (
   `id` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `user_id` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `friend_id` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `friend_email` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `remarks` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '备注名',
   `create_time` datetime NOT NULL COMMENT '创建时间',
   `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
