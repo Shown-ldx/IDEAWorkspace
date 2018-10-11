@@ -38,4 +38,10 @@ public class FriendMapperTest {
     public void saveFriend() {
 
     }
+
+    @Test
+    public void selectNumberOfFriends() {
+        Integer result = friendMapper.selectNumberOfFriends();
+        log.error(result.toString());
+    }
 }

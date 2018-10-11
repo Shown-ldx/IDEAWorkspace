@@ -11,6 +11,9 @@ public interface FriendMapper {
                                             @Param("begin") Integer begin,
                                             @Param("pageSize") Integer pageSize);
 
+    @Select("select count(*) from friend")
+    public Integer selectNumberOfFriends();
+
     @InsertProvider(type = SqlBuilder.class, method = "saveFriend")
     public Integer saveFriend(@Param("friend") Friend friend);
 
