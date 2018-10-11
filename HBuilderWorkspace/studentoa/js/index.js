@@ -14,6 +14,8 @@ $(document).ready(function(){
     
   });
   
+
+  
     //修改个人信息
   $("#updateUserInfo").click(function(){
 
@@ -38,6 +40,11 @@ $("#myFriendList").click(function(){
 });
 
 });
+
+  //加载我的日程
+ $("#schedule").click(function(){
+  	window.open("schedule/index.html");
+ });
 
 //ajax提交
 function submit(data,url,name) {

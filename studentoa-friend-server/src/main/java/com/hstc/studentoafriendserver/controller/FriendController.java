@@ -26,8 +26,8 @@ public class FriendController {
 
     @PostMapping("/list")
     public String friendList(@RequestParam("email") String email,
-                             @RequestParam("currPage") Integer currPage,
-                             @RequestParam("pageSize") Integer pageSize){
+                             @RequestParam(value = "currPage", defaultValue = "1") Integer currPage,
+                             @RequestParam(value = "pageSize", defaultValue = "5") Integer pageSize){
 
         String userId = stringRedisTemplate.opsForValue().get(email);
         if (userId == null) {

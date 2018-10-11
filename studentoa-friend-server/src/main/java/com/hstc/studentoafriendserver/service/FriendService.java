@@ -12,4 +12,5 @@ public interface FriendService {
     public Friend saveFriend(Friend friend);
     public Integer deleteFriendById(String id);
     public Friend updateFriendRemarks(Friend friend);
+    public Integer selectPages(Integer pageSize);
 }

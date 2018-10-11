@@ -34,4 +34,9 @@ public class FriendServiceImpl implements FriendService {
     public Friend updateFriendRemarks(Friend friend) {
         return null;
     }
+
+    @Override
+    public Integer selectPages(Integer pageSize) {
+        return null;
+    }
 }
