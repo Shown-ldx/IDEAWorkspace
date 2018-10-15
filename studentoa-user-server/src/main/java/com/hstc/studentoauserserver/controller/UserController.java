@@ -62,9 +62,9 @@ public class UserController {
         response.setHeader("Access-Control-Allow-Origin", "*");             //设置请求头，使浏览器能跨域得到数据
         User user = userService.selectUserByEmail(email);
         if(user == null) return new Gson().toJson(ResultVOUtil.error(9999, "邮箱未被注册"));
-        if(user.getStatus() == UserEnum.INACTIVATED.getCode())
+        else if(user.getStatus() == UserEnum.INACTIVATED.getCode())
             return new Gson().toJson(ResultVOUtil.error(9999, "邮箱未被激活"));
-        if(user.getPassword().equals(password)){
+        else if(user.getPassword().equals(password)){
             stringRedisTemplate.opsForValue().set(user.getEmail(), user.getId());
             //TODO 使用quart定时检查用户token是否过时，过时则remove掉redis里面的用户对应
             String token = TokenUtil.genetateToken();

@@ -105,7 +105,7 @@ function submit(data,url,name) {
         },
         success: function (data) {
         	
-            if(data.code==0 && data.data != null){
+            if(data.code == 0 && name == "signin"){
             	alert(data.message);
             	var storage = window.localStorage;
             	storage.setItem("email", $("#Lemail").val());

@@ -8,10 +8,7 @@ import com.hstc.studentoafriendserver.vo.FriendVO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.StringRedisTemplate;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.List;
@@ -27,7 +24,7 @@ public class FriendController {
     @Autowired
     private StringRedisTemplate stringRedisTemplate;
 
-    @PostMapping("/list")
+    @GetMapping("/list")
     public String friendList(@RequestParam("email") String email,
                              @RequestParam(value = "currPage", defaultValue = "1") Integer currPage,
                              @RequestParam(value = "pageSize", defaultValue = "5") Integer pageSize){
@@ -50,4 +47,11 @@ public class FriendController {
         map.put("friendVOList", friendVOList);
         return new Gson().toJson(ResultVOUtil.success(map));
     }
+
+    //添加用户
+    @PostMapping("addFriend")
+    public String addFriend(){
+        return null;
+    }
+
 }

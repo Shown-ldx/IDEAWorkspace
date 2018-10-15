@@ -38,9 +38,31 @@ $(document).ready(function(){
 $("#myFriendList").click(function(){
 	$("#motherBoard").load("friend/friendList.html");
 	$.getJSON(
-		"http://localhost:8080/friend/list?email="+storage["email"],
+		"http://localhost:8081/friend/list?email="+storage["email"],
 		function(data){
-			
+			if(data.code == 0 && data.data != null){
+				var trs = "";
+				var trDom = "";
+				for(int i=0; i<data.data.friendVOList.length; i++){
+					var friendVOList = data.data.friendVOList;
+					if(i%2 === 0){
+						trDom = $('<tr class="success"></tr>');
+						$('<td>'+(i+1)+'</td>').appendTo(trDom);
+						$('<td>'+friendVOList[i].friendEmail+'</td>').appendTo(trDom);
+						$('<td>'+friendVOList[i].remarks+'</td>').appendTo(trDom);
+						$('<td>'+friendVOList[i].createTime+'</td>').appendTo(trDom);
+					}
+					else{
+						trDom = $('<tr></tr>');
+						$('<td>'+(i+1)+'</td>').appendTo(trDom);
+						$('<td>'+friendVOList[i].friendEmail+'</td>').appendTo(trDom);
+						$('<td>'+friendVOList[i].remarks+'</td>').appendTo(trDom);
+						$('<td>'+friendVOList[i].createTime+'</td>').appendTo(trDom);
+					}
+					trs += trDom;
+				}
+				$(trs).apendTo("#friendListBody");
+			}
 		}
 	);
 });
