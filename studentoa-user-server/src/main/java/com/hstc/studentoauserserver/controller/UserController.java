@@ -65,7 +65,7 @@ public class UserController {
         else if(user.getStatus() == UserEnum.INACTIVATED.getCode())
             return new Gson().toJson(ResultVOUtil.error(9999, "邮箱未被激活"));
         else if(user.getPassword().equals(password)){
-            stringRedisTemplate.opsForValue().set(user.getEmail(), user.getId());
+//            stringRedisTemplate.opsForValue().set(user.getEmail(), user.getId());
             //TODO 使用quart定时检查用户token是否过时，过时则remove掉redis里面的用户对应
             String token = TokenUtil.genetateToken();
             HttpSession session = request.getSession();

@@ -29,11 +29,11 @@ public class FriendController {
                              @RequestParam(value = "currPage", defaultValue = "1") Integer currPage,
                              @RequestParam(value = "pageSize", defaultValue = "5") Integer pageSize){
 
-        String userId = stringRedisTemplate.opsForValue().get(email);
-        if (userId == null) {
-            log.error("用户未登陆或者登陆异常。");
-            return new Gson().toJson(ResultVOUtil.error(9999, "用户未登陆或登陆状态异常，请重新登陆"));
-        }
+        String userId = stringRedisTemplate.opsForValue().get(email);//TODO
+//        if (userId == null) {
+//            log.error("用户未登陆或者登陆异常。");
+//            return new Gson().toJson(ResultVOUtil.error(9999, "用户未登陆或登陆状态异常，请重新登陆"));
+//        }
         Map<String, Object> map = new HashMap<String, Object>();
         //获取我的好友的总页数
         Integer pages = friendService.selectPages(pageSize);
