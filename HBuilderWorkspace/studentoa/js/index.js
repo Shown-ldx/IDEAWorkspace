@@ -42,24 +42,28 @@ $("#myFriendList").click(function(){
 		function(data){
 			if(data.code == 0 && data.data != null){
 				var trs = "";
+				var tr = "";
 				var trDom = "";
-				for(int i=0; i<data.data.friendVOList.length; i++){
-					var friendVOList = data.data.friendVOList;
+				var friendVOList = data.data.friendVOList;
+				for(var i=0; i<friendVOList.length; i++){
+					
 					if(i%2 === 0){
-						trDom = $('<tr class="success"></tr>');
-						$('<td>'+(i+1)+'</td>').appendTo(trDom);
-						$('<td>'+friendVOList[i].friendEmail+'</td>').appendTo(trDom);
-						$('<td>'+friendVOList[i].remarks+'</td>').appendTo(trDom);
-						$('<td>'+friendVOList[i].createTime+'</td>').appendTo(trDom);
+						tr = $('<tr class="success"></tr>');
+						trDom = '<td>'+(i+1)+'</td>' + '<td>'
+								+ friendVOList[i].friendEmail+'</td>' 
+								+ '<td>'+friendVOList[i].remarks+'</td>' 
+								+ '<td>'+friendVOList[i].createTime+'</td>';
+						$(trDom).appendTo(tr);
 					}
 					else{
-						trDom = $('<tr></tr>');
-						$('<td>'+(i+1)+'</td>').appendTo(trDom);
-						$('<td>'+friendVOList[i].friendEmail+'</td>').appendTo(trDom);
-						$('<td>'+friendVOList[i].remarks+'</td>').appendTo(trDom);
-						$('<td>'+friendVOList[i].createTime+'</td>').appendTo(trDom);
+						tr = $('<tr></tr>');
+						trDom = '<td>'+(i+1)+'</td>' + '<td>'
+								+ friendVOList[i].friendEmail+'</td>' 
+								+ '<td>'+friendVOList[i].remarks+'</td>' 
+								+ '<td>'+friendVOList[i].createTime+'</td>';
+						$(trDom).appendTo(tr);
 					}
-					trs += trDom;
+					trs += tr;
 				}
 				$(trs).apendTo("#friendListBody");
 			}

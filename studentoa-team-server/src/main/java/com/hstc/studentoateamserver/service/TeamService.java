@@ -1,5 +1,7 @@
 package com.hstc.studentoateamserver.service;
 
-public interface TeamService {
+import com.hstc.studentoateamserver.pojo.Team;
 
+public interface TeamService {
+    public Team addTeam(Team team);
 }

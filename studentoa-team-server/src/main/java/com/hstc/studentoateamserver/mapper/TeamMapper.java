@@ -8,7 +8,7 @@ import org.apache.ibatis.annotations.SelectProvider;
 public interface TeamMapper {
 
     @InsertProvider(type = SqlBuilder.class, method = "addTeam")
-    public Team addTeam(@Param("team") Team team);
+    public Integer addTeam(@Param("team") Team team);
 
     //根据Email查找团队列表
     //根据团队id查找任务详情

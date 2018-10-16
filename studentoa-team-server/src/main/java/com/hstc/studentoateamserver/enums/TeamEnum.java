@@ -8,6 +8,7 @@ public enum TeamEnum {
     FINISH(1, "任务完成"),
     EXPIRED(2, "任务过期"),
     DEATH(3, "任务死亡"),
+    PARAM_ERRER(4, "参数不正确"),
 
     ;
     private Integer code;
