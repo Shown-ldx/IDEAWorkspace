@@ -105,8 +105,8 @@ function submit(data,url,name) {
         },
         success: function (data) {
         	
-            if(data.code == 0 && name == "signin"){
-            	alert(data.message);
+            if(data.code == 0 && name == "#signin"){
+            	alert(data.message+"1");
             	var storage = window.localStorage;
             	storage.setItem("email", $("#Lemail").val());
             	storage.setItem("token", data.token);
